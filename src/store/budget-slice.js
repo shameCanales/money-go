@@ -23,6 +23,7 @@ const budgetSlice = createSlice({
       state.totalDeposit = getTotalDeposit(state.movements);
       state.totalWithdrawal = getTotalWithdrawal(state.movements);
       state.currentBalance = state.totalDeposit - state.totalWithdrawal;
+      console.log("HELLO GITHUB");
     },
 
     addMovement(state, action) {
