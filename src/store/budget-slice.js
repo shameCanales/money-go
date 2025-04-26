@@ -25,6 +25,11 @@ const budgetSlice = createSlice({
       state.currentBalance = state.totalDeposit - state.totalWithdrawal;
     },
 
+    loadMovementsFromLocalStorage(state, action) {
+      localStorage.getItem("movements") !== null &&
+        (state.movements = JSON.parse(localStorage.getItem("movements")));
+    },
+
     addMovement(state, action) {
       const dateToday = getDate();
       const randomId = generateId();
@@ -41,6 +46,8 @@ const budgetSlice = createSlice({
         },
         ...state.movements,
       ];
+
+      localStorage.setItem("movements", JSON.stringify(state.movements));
     },
 
     removeMovement(state, action) {
@@ -48,6 +55,8 @@ const budgetSlice = createSlice({
       state.movements = state.movements.filter(
         (movement) => movement.id !== idToRemove
       );
+
+      localStorage.setItem("movements", JSON.stringify(state.movements));
     },
 
     editMovement(state, action) {
@@ -64,10 +73,11 @@ const budgetSlice = createSlice({
         state.movements[indexToEdit].date = date;
         state.movements[indexToEdit].time = time;
       }
+
+      localStorage.setItem("movements", JSON.stringify(state.movements));
     },
   },
 });
 
 export const budgetActions = budgetSlice.actions;
 export default budgetSlice;
-

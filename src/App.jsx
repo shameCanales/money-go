@@ -13,6 +13,11 @@ import { useSelector, useDispatch } from "react-redux";
 function App() {
   const dispatch = useDispatch();
   const movements = useSelector((state) => state.budget.movements);
+
+  useEffect(() => {
+    dispatch(budgetActions.loadMovementsFromLocalStorage());
+  }, []);
+
   useEffect(() => {
     dispatch(budgetActions.reinitializeBudget());
   }, [movements]);
