@@ -36,12 +36,12 @@ export default function MovementItem({ id, date, type, desc, amount, time }) {
         <p>{desc}</p>
       </div>
 
-      <div className="absolute top--1 right-0  flex flex-col justify-center p-4 items-center gap-5 bg-purple-600 h-[103%] ">
-        <button className="text-white w-8 " onClick={handleDeleteMovement}>
+      <div className="absolute top--1 right-0  flex flex-col justify-center p-4 items-center gap-8 bg-purple-600 h-[103%] ">
+        <button className="text-white w-6 " onClick={handleDeleteMovement}>
           {/* <FaEdit className="text-white text-lg" /> */}
           <img src={binImg} alt="trach icon" className="w-[100%] block" />
         </button>
-        <button className="text-white w-8" onClick={handleEditMovement}>
+        <button className="text-white w-6" onClick={handleEditMovement}>
           {/* <FaTrashAlt className="text-white text-lg" /> */}
           <img src={editImg} alt="edit icon" className="w-[100%] block" />
         </button>
