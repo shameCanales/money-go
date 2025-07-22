@@ -81,3 +81,10 @@ const budgetSlice = createSlice({
 
 export const budgetActions = budgetSlice.actions;
 export default budgetSlice;
+
+//Derived vs stored derived state
+// Derived is just storing the movements(no totalDeposit, totalWithdrawal, and no reinitialization to compute these).
+// - deriving the totalBalance on the component that needs that data based on the stored movements.
+// stored Derived is computing the totalDeposit, totalWithdrawal, and currentBalance in the slice and storing them in the state.
+// -for example a reinitializeBudget action that computes the totalDeposit, totalWithdrawal, and currentBalance based on the movements and updates the state accordingly.
+// - used useEffect to call reinitialization after initial render and set movementItems as dependancy so it runs reinit everytime the movementItems change.

@@ -16,8 +16,6 @@ export function getCurentTime() {
   return time;
 }
 
-
-
 export function generateId() {
   return Math.floor(10000000 + Math.random() * 90000000);
 }
@@ -55,4 +53,10 @@ export function getTotalWithdrawal(movements) {
   );
 
   return totalWithdrawals;
+}
+
+export function getCurrentBalance(movements) {
+  const totalDeposit = getTotalDeposit(movements);
+  const totalWithdrawal = getTotalWithdrawal(movements);
+  return totalDeposit - totalWithdrawal;
 }
