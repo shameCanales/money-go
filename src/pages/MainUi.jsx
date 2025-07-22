@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import NewMovement from "../components/NewMovement";
 import EditMovement from "../components/EditMovement";
@@ -10,15 +10,10 @@ import { budgetActions } from "../store/budget-slice";
 
 export default function MainUi(){
   const dispatch = useDispatch();
-  const movements = useSelector((state) => state.budget.movements);
 
   useEffect(() => {
     dispatch(budgetActions.loadMovementsFromLocalStorage());
   }, []);
-
-  useEffect(() => {
-    dispatch(budgetActions.reinitializeBudget());
-  }, [movements]);
 
   return (
     <div className="max-w-md mx-auto min-h-screen ">

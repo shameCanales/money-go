@@ -1,11 +1,16 @@
 import Total from "./total";
 import { useSelector } from "react-redux";
-import { formatToCurrency } from "../util/util";
+import {
+  formatToCurrency,
+  getTotalDeposit,
+  getTotalWithdrawal,
+} from "../util/util";
 import { NavLink } from "react-router";
 
 export default function Totals() {
-  const totalDeposit = useSelector((state) => state.budget.totalDeposit);
-  const totalWithdrawal = useSelector((state) => state.budget.totalWithdrawal);
+  const movements = useSelector((state) => state.budget.movements);
+  const totalDeposit = getTotalDeposit(movements);
+  const totalWithdrawal = getTotalWithdrawal(movements);
 
   const formattedDeposit = formatToCurrency(totalDeposit);
   const formattedWithdrawal = formatToCurrency(totalWithdrawal);

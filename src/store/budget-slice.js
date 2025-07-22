@@ -1,17 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  getDate,
-  generateId,
-  getCurentTime,
-  getTotalDeposit,
-  getTotalWithdrawal,
-} from "../util/util";
+import { getDate, generateId, getCurentTime } from "../util/util";
 
 const initialBudgetState = {
   movements: [],
-  currentBalance: 0,
-  totalDeposit: 0,
-  totalWithdrawal: 0,
   indexEditing: 0,
 };
 
@@ -19,12 +10,6 @@ const budgetSlice = createSlice({
   name: "budget",
   initialState: initialBudgetState,
   reducers: {
-    reinitializeBudget(state, action) {
-      state.totalDeposit = getTotalDeposit(state.movements);
-      state.totalWithdrawal = getTotalWithdrawal(state.movements);
-      state.currentBalance = state.totalDeposit - state.totalWithdrawal;
-    },
-
     loadMovementsFromLocalStorage(state, action) {
       localStorage.getItem("movements") !== null &&
         (state.movements = JSON.parse(localStorage.getItem("movements")));

@@ -14,6 +14,7 @@ export default function EditMovement() {
   const isEditModalOpen = useSelector((state) => state.ui.editIsOpen);
   const currentIdToEdit = useSelector((state) => state.ui.currentIdtoEdit);
   const movements = useSelector((state) => state.budget.movements);
+  
   const selectedMovement = movements.find(
     (movement) => movement.id === currentIdToEdit
   );
