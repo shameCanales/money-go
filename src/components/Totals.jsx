@@ -1,6 +1,7 @@
 import Total from "./total";
 import { useSelector } from "react-redux";
 import { formatToCurrency } from "../util/util";
+import { NavLink } from "react-router";
 
 export default function Totals() {
   const totalDeposit = useSelector((state) => state.budget.totalDeposit);
@@ -16,7 +17,9 @@ export default function Totals() {
         <Total name="Total Withdrawal" amount={formattedWithdrawal} />
       </div>
 
-      <a className="font-medium underline">DashBoard</a>
+      <NavLink className="font-medium underline" to="/dashboard">
+        DashBoard
+      </NavLink>
     </div>
   );
 }
