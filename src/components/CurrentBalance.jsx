@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import { formatToCurrency, getCurrentBalance } from "../util/util";
+import { formatToCurrency } from "../util/util";
+import { getCurrentBalance } from "../util/budgetUtil";
 
 export default function CurrentBalance() {
   const movements = useSelector((state) => state.budget.movements);
