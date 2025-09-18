@@ -10,7 +10,7 @@ const budgetSlice = createSlice({
   name: "budget",
   initialState: initialBudgetState,
   reducers: {
-    loadMovementsFromLocalStorage(state, action) {
+    loadMovementsFromLocalStorage(state) {
       localStorage.getItem("movements") !== null &&
         (state.movements = JSON.parse(localStorage.getItem("movements")));
     },

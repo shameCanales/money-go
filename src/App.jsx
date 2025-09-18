@@ -3,7 +3,7 @@ import "@fontsource/poppins";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import RootLayout from "./pages/RootLayout";
 import MainUi from "./pages/MainUi";
-import DashBoard from "./pages/dashboard";
+// import DashBoard from "./pages/dashboard";
 
 const router = createBrowserRouter([
   {
@@ -12,10 +12,10 @@ const router = createBrowserRouter([
     errorElement: <p>PageNotFound</p>,
     children: [
       { index: true, element: <MainUi /> },
-      {
-        path: "dashboard",
-        element: <DashBoard />,
-      },
+      // {
+      //   path: "dashboard",
+      //   element: <DashBoard />,
+      // },
     ],
   },
 ]);
