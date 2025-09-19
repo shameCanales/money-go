@@ -7,7 +7,7 @@ export default function MainUi() {
       <main>
         <Outlet />
       </main>
-      <MainNavigation />
+      {/* <MainNavigation /> */}
     </>
   );
 }
