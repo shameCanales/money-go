@@ -12,6 +12,7 @@ import RadioGroup from "../ui/RadioGroup";
 export default function NewMovement() {
   const isModalOpen = useSelector((state) => state.ui.addIsOpen);
   const dispatch = useDispatch();
+  const movements = useSelector((state) => state.budget.movements);
 
   function newMovementFunction(prevFormState, formData) {
     const amount = Number(formData.get("amount"));
@@ -77,15 +78,26 @@ export default function NewMovement() {
           defaultValue={movementFormState.enteredValues?.amount ?? ""}
         />
 
-        <RadioGroup
-          name="type"
-          inputLabel="Movement Type:"
-          options={[
-            { value: "deposit", label: "Deposit" },
-            { value: "withdraw", label: "Withdraw" },
-          ]}
-          defaultValue={movementFormState.enteredValues?.type}
-        />
+        {movements.length > 0 ? (
+          <RadioGroup
+            name="type"
+            inputLabel="Movement Type:"
+            options={[
+              { value: "deposit", label: "Deposit" },
+              { value: "withdraw", label: "Withdraw" },
+            ]}
+            defaultValue={movementFormState.enteredValues?.type}
+          />
+        ) : (
+          <>
+            <RadioGroup
+              name="type"
+              inputLabel="Movement Type:"
+              options={[{ value: "deposit", label: "Deposit" }]}
+              defaultValue={movementFormState.enteredValues?.type}
+            />
+          </>
+        )}
 
         <InputField
           label="Description"

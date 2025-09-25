@@ -16,23 +16,27 @@ const budgetSlice = createSlice({
     },
 
     addMovement(state, action) {
-      const dateToday = getDate();
-      const randomId = generateId();
-      const getTime = getCurentTime();
+      if (state.movements > 0) {
+        const dateToday = getDate();
+        const randomId = generateId();
+        const getTime = getCurentTime();
 
-      state.movements = [
-        {
-          id: randomId,
-          movementType: action.payload.type,
-          amount: action.payload.amount,
-          desc: action.payload.description,
-          date: dateToday,
-          time: getTime,
-        },
-        ...state.movements,
-      ];
+        state.movements = [
+          {
+            id: randomId,
+            movementType: action.payload.type,
+            amount: action.payload.amount,
+            desc: action.payload.description,
+            date: dateToday,
+            time: getTime,
+          },
+          ...state.movements,
+        ];
 
-      localStorage.setItem("movements", JSON.stringify(state.movements));
+        localStorage.setItem("movements", JSON.stringify(state.movements));
+      } else {
+        console.error("you cannot withdraw if you have no balance.")
+      }
     },
 
     removeMovement(state, action) {

@@ -19,9 +19,9 @@ export default function Totals() {
         <Total name="Total Withdrawal" amount={formattedWithdrawal} />
       </div>
 
-      <NavLink className="font-medium underline" to="/dashboard">
+      {/* <NavLink className="font-medium underline" to="/dashboard">
         DashBoard
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 }
