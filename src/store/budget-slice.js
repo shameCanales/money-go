@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getDate, generateId, getCurentTime } from "../util/util";
+import { getCurrentBalance } from "../util/budgetUtil";
 
 const initialBudgetState = {
   movements: [],
@@ -16,7 +17,14 @@ const budgetSlice = createSlice({
     },
 
     addMovement(state, action) {
-      if (state.movements > 0) {
+      const remainingBal = getCurrentBalance(state.movements);
+
+      if (
+        action.payload.type === "withdraw" &&
+        action.payload.amount > remainingBal
+      ) {
+        return;
+      } else {
         const dateToday = getDate();
         const randomId = generateId();
         const getTime = getCurentTime();
@@ -34,8 +42,6 @@ const budgetSlice = createSlice({
         ];
 
         localStorage.setItem("movements", JSON.stringify(state.movements));
-      } else {
-        console.error("you cannot withdraw if you have no balance.")
       }
     },
 

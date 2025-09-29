@@ -1,10 +1,17 @@
-export function validateMovementForm({ amount, type, description }) {
+export function validateMovementForm({
+  amount,
+  type,
+  description,
+  currentBalance,
+}) {
   const errors = [];
 
+  if (type === "withdraw" && amount > currentBalance) {
+    errors.push("You cannot withdraw higher than your balance");
+  }
   if (!amount || isNaN(amount) || amount < 1) {
     errors.push("Please enter a valid amount");
   }
-
   if (!type) {
     errors.push("Please Select a movement type");
   }

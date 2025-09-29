@@ -1,5 +1,3 @@
-import RadioBtn from "./RadioBtn";
-
 export default function RadioGroup({
   name,
   inputLabel,
@@ -14,12 +12,21 @@ export default function RadioGroup({
 
       {options.map((opt) => {
         return (
-          <RadioBtn
-            key={opt.value}
-            idValue={opt.value}
-            name={name}
-            defaultValue={defaultValue}
-          />
+          <div className="flex items-center mt-2" key={opt.value}>
+            <input
+              type="radio"
+              id={opt.value}
+              name={name}
+              value={opt.value}
+              className=" accent-blue-600 w-6 h-6"
+              defaultChecked={
+                opt.value === defaultValue || opt.checked === true
+              } // checked requires onchange event to work properly unlike defaultChecked
+            />
+            <label className="ml-2 poppins-regular" htmlFor={opt.value}>
+              {opt.value}
+            </label>
+          </div>
         );
       })}
     </div>

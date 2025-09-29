@@ -8,11 +8,13 @@ import { budgetActions } from "../store/budget-slice";
 import { validateMovementForm } from "../util/validation";
 import InputField from "../ui/InputField";
 import RadioGroup from "../ui/RadioGroup";
+import { getCurrentBalance } from "../util/budgetUtil";
 
 export default function NewMovement() {
   const isModalOpen = useSelector((state) => state.ui.addIsOpen);
   const dispatch = useDispatch();
   const movements = useSelector((state) => state.budget.movements);
+  const currentBalance = getCurrentBalance(movements);
 
   function newMovementFunction(prevFormState, formData) {
     const amount = Number(formData.get("amount"));
@@ -20,7 +22,12 @@ export default function NewMovement() {
     const description = formData.get("description");
 
     //Form Validation from utility
-    const errors = validateMovementForm({ amount, type, description });
+    const errors = validateMovementForm({
+      amount,
+      type,
+      description,
+      currentBalance,
+    });
 
     if (errors.length > 0) {
       return {
@@ -93,7 +100,7 @@ export default function NewMovement() {
             <RadioGroup
               name="type"
               inputLabel="Movement Type:"
-              options={[{ value: "deposit", label: "Deposit" }]}
+              options={[{ value: "deposit", label: "Deposit", checked: true }]}
               defaultValue={movementFormState.enteredValues?.type}
             />
           </>
